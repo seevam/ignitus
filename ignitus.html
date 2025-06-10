@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ignitus - Innovation Lab for Future-Ready Students</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #222222;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Pre-Header Bar */
+        .pre-header {
+            background: #FFD633;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 500;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .pre-header a {
+            color: #222222;
+            text-decoration: none;
+            background: #2B7BFF;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .pre-header a:hover {
+            background: #1a5ebf;
+            transform: translateY(-1px);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 40px;
+            z-index: 999;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: #2B7BFF;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #222222;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #2B7BFF;
+        }
+
+        .nav-links .highlight {
+            background: #FFD633;
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: #222222 !important;
+        }
+
+        .cta-btn {
+            background: #2B7BFF;
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: #1a5ebf;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f8faff 0%, #e8f2ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: #222222;
+        }
+
+        .hero-text .subhead {
+            font-size: 20px;
+            color: #666666;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: #2B7BFF;
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #1a5ebf;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(43, 123, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #2B7BFF;
+            padding: 16px 32px;
+            border: 2px solid #2B7BFF;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: #2B7BFF;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-card:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-card:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-card:nth-child(3) {
+            bottom: 10%;
+            left: 30%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Methodology Section */
+        .methodology {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 60px;
+            color: #222222;
+        }
+
+        .methodology-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 16px;
+            background: #f8faff;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .step-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: #2B7BFF;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .step-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #222222;
+        }
+
+        .step-description {
+            color: #666666;
+            line-height: 1.6;
+        }
+
+        /* Labs Section */
+        .labs {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8faff 0%, #e8f2ff 100%);
+        }
+
+        .labs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .lab-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lab-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .lab-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .lab-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #222222;
+        }
+
+        .lab-description {
+            color: #666666;
+            line-height: 1.6;
+        }
+
+        .lab-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #2B7BFF;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .lab-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        /* Stand Out Section */
+        .stand-out {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 16px;
+            background: #f8faff;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .benefit-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .benefit-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #222222;
+        }
+
+        .benefit-description {
+            color: #666666;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2B7BFF 0%, #1a5ebf 100%);
+            color: white;
+        }
+
+        .about .section-title {
+            color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .about-tagline {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #FFD633;
+        }
+
+        /* FAQs Section */
+        .faqs {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 25px;
+            background: #f8faff;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #e8f2ff;
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .faq-answer.active {
+            padding: 25px;
+            max-height: 200px;
+        }
+
+        .faq-toggle {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-toggle.active {
+            transform: rotate(180deg);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: #f8faff;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #222222;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2B7BFF;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        .footer {
+            background: #222222;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #FFD633;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #cccccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #2B7BFF;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #2B7BFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #FFD633;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444444;
+            color: #cccccc;
+        }
+
+        /* Chatbot */
+        .chatbot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #2B7BFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(43, 123, 255, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chatbot:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(43, 123, 255, 0.4);
+        }
+
+        .chatbot-icon {
+            color: white;
+            font-size: 24px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .methodology-steps {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+
+            .labs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .methodology-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Pre-Header Bar -->
+    <div class="pre-header">
+        📣 Register now for IGNITUS SPARK – Our National Talent Hunt for Future Innovators! 
+        <a href="#apply">Apply Now</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">🔥 Ignitus</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#labs">Labs</a></li>
+            <li><a href="#methodology">Methodology</a></li>
+            <li><a href="#how-we-help">How We Help</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#admissions" class="highlight">Admissions Abroad</a></li>
+            <li><a href="#faqs">FAQs</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#join" class="cta-btn">Join Ignitus</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>A Hands-On Innovation Lab for Future-Ready Students</h1>
+                    <p class="subhead">Build real-world skills through storytelling, coding, design, research, and entrepreneurship — while crafting standout global profiles.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn-primary">Book Your First Consultation</a>
+                        <a href="#about" class="btn-secondary">Partner with Us</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-elements">
+                        <div class="floating-card">
+                            <strong>💻 Code</strong><br>Build apps & websites
+                        </div>
+                        <div class="floating-card">
+                            <strong>🎨 Design</strong><br>Create beautiful interfaces
+                        </div>
+                        <div class="floating-card">
+                            <strong>🚀 Launch</strong><br>Present your projects
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="methodology">
+        <div class="container">
+            <h2 class="section-title">How Learning Happens at Ignitus</h2>
+            <div class="methodology-steps">
+                <div class="step-card fade-in">
+                    <div class="step-number">1</div>
+                    <span class="step-icon">🧠</span>
+                    <h3 class="step-title">Explore</h3>
+                    <p class="step-description">Discover passions through real-world challenges. Students explore 10+ industries before choosing their path.</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">2</div>
+                    <span class="step-icon">🛠</span>
+                    <h3 class="step-title">Build</h3>
+                    <p class="step-description">Learn by doing with mentorship. Weekly live sessions and 1:1 support using tools like Figma, GitHub, and Notion.</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">3</div>
+                    <span class="step-icon">🌱</span>
+                    <h3 class="step-title">Grow</h3>
+                    <p class="step-description">Personalized support from mentors and AI guides. Get feedback, iterate, and improve continuously.</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">4</div>
+                    <span class="step-icon">🎤</span>
+                    <h3 class="step-title">Shine</h3>
+                    <p class="step-description">Present your work, earn badges, and showcase portfolios. Build confidence through public presentation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Labs Section -->
+    <section id="labs" class="labs">
+        <div class="container">
+            <h2 class="section-title">Choose Your Playground of Possibilities</h2>
+            <p style="text-align: center; font-size: 18px; color: #666; margin-top: -20px;">10 Future-Focused Labs for Every Kind of Learner</p>
+            <div class="labs-grid">
+                <div class="lab-card fade-in">
+                    <span class="lab-icon">🧩</span>
+                    <h3 class="lab-title">SolveSpace</h3>
+                    <p class="lab-description">Solve real problems with design thinking and creativity. Learn empathy mapping, prototyping, and user research.</p>
+                </div>
+                <div class="lab-card fade-in">
+                    <span class="lab-icon">🚀</span>
+                    <h3 class="lab-title">Venture Garage</h3>
+                    <p class="lab-description">Build your first business idea from scratch. Learn entrepreneurship, market research, and pitch delivery.</p>
+                </div>
+                <div class="lab-card fade-in">
+                    <span class="lab-icon">🤖</span>
+                    <h3 class="lab-title">Bit Builders</h3>
+                    <p class="lab-description">Build digital tools before you build your résumé. Learn coding, AI, and digital fluency with real projects.</p>
+                </div>
+                <div class="lab-card fade-in">
+                    <span class="lab-icon">🛠</span>
+                    <h3 class="lab-title">Tinker Tank</h3>
+                    <p class="lab-description">Learn how the world works by building it. Engineering, robotics, and hands-on prototyping.</p>
+                </div>
+                <div class="lab-card fade-in">
+                    <span class="lab-icon">🧠</span>
+                    <h3 class="lab-title">Curiosity Lab</h3>
+                    <p class="lab-description">Explore, research, and contribute original thought to the world. Academic research and inquiry skills.</p>
+                </div>
+                <div class="lab-card fade-in">
+                    <span class="lab-icon">🎨</span>
+                    <h3 class="lab-title">Pixel Playhouse</h3>
+                    <p class="lab-description">Learn to design what the world will love to use. UI/UX design, visual communication, and creativity.</p>
+                </div>
+                <div class="lab-card fade-in">
+                    <span class="lab-icon">🎥</span>
+                    <h3 class="lab-title">Story Circuit</h3>
+                    <p class="lab-description">Tell stories that move people. Media creation, storytelling, and communication skills.</p>
+                </div>
+                <div class="lab-card fade-in">
+                    <span class="lab-icon">💼</span>
+                    <h3 class="lab-title">Capital Grounds</h3>
+                    <p class="lab-description">Understand money, markets, and how the world works. Financial literacy and business acumen.</p>
+                </div>
+                <div class="lab-card fade-in">
+                    <span class="lab-icon">🌱</span>
+                    <h3 class="lab-title">Impact Foundry</h3>
+                    <p class="lab-description">Create ideas that serve people and the planet. Social innovation and sustainability projects.</p>
+                </div>
+                <div class="lab-card fade-in">
+                    <span class="lab-icon">🧭</span>
+                    <h3 class="lab-title">BoldGround</h3>
+                    <p class="lab-description">Build presence. Speak with clarity. Lead with courage. Leadership and public speaking skills.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stand Out Section -->
+    <section id="how-we-help" class="stand-out">
+        <div class="container">
+            <h2 class="section-title">Stand Out — In College Applications & In Life</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card fade-in">
+                    <span class="benefit-icon">⚡</span>
+                    <h3 class="benefit-title">Future Skills</h3>
+                    <p class="benefit-description">Learn to code, research, design, speak, and lead. Build skills that matter in the real world.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <span class="benefit-icon">📁</span>
+                    <h3 class="benefit-title">Portfolio-Driven Learning</h3>
+                    <p class="benefit-description">Every student builds projects, publishes online, and earns real-world credentials that showcase their abilities.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <span class="benefit-icon">🌍</span>
+                    <h3 class="benefit-title">Global Readiness</h3>
+                    <p class="benefit-description">Build a unique story that stands out to Ivy Leagues and beyond. Get ready for global opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Built by Innovators. Driven by Passion.</h2>
+            <div class="about-content">
+                <div>
+                    <h3 class="about-tagline">Not every child gets into a top college. But every child deserves to see what's possible.</h3>
+                    <p class="about-text">At Ignitus, we believe education begins with exposure — not just to marks, but to the world. We built Ignitus to give every student the chance to think freely, build boldly, and prepare meaningfully for what lies beyond school.</p>
+                    <p class="about-text">This isn't about coaching for a test. It's about preparing to take on the world with confidence, clarity, and curiosity.</p>
+                </div>
+                <div>
+                    <h4 style="font-size: 24px; margin-bottom: 20px; color: #FFD633;">Our Vision</h4>
+                    <p class="about-text">To make every learner confident, creative, and globally prepared through hands-on innovation and real-world project experience.</p>
+                    <h4 style="font-size: 24px; margin-bottom: 20px; margin-top: 30px; color: #FFD633;">Our Team</h4>
+                    <p class="about-text">Founded by innovators from top universities and leading companies, mentored by experts from academia, industry, and innovation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faqs" class="faqs">
+        <div class="container">
+            <h2 class="section-title">Got Questions? We've Got Answers.</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is the ideal age group for Ignitus?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ignitus is designed for students aged 13-21. Our Explorer Quest is perfect for ages 13-17, while our Innovation Labs cater to ages 16-21. We customize the experience based on the student's maturity and interest level.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How are classes conducted?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We use a hybrid approach with weekly live online sessions, 1:1 mentor meetings, and self-paced project work. Students get the flexibility to learn at their own pace while having structured support and guidance.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is Ignitus right for beginners?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! No prior experience required. Our programs start from the basics and build up progressively. We believe in learning by doing, so students discover their interests and build skills naturally through projects.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Do you help with global admissions?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Our programs are specifically designed to help students build standout profiles for global university applications. We provide mentorship, portfolio development, and application guidance for top universities worldwide.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What makes Ignitus different from other programs?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We focus on building, not just learning. Every student creates real projects, gets 1:1 mentorship from industry professionals, and builds a portfolio that showcases actual skills and achievements rather than just certificates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apply Section -->
+    <section id="apply" class="apply" style="padding: 100px 0; background: linear-gradient(135deg, #2B7BFF 0%, #1a5ebf 100%); color: white; text-align: center;">
+        <div class="container">
+            <h2 class="section-title" style="color: white; margin-bottom: 30px;">Apply to Ignitus: Take the Talent Discovery Exam</h2>
+            <p style="font-size: 24px; color: #FFD633; margin-bottom: 40px;">This Isn't Just Another Test. It's the Start of Your Journey.</p>
+            <p style="font-size: 18px; line-height: 1.6; max-width: 800px; margin: 0 auto 50px;">The Talent Discovery Exam (TDE) is your gateway into Ignitus — where students don't just prepare for college, they prepare for life. If you're curious, creative, and ready to build something real — take the leap.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin: 60px 0;">
+                <div class="benefit-highlight" style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 16px; backdrop-filter: blur(10px);">
+                    <h4 style="color: #FFD633; margin-bottom: 15px;">✅ What You'll Get</h4>
+                    <ul style="list-style: none; text-align: left;">
+                        <li>• Eligibility for Ignitus Founding Cohort</li>
+                        <li>• Access to 10+ learning labs</li>
+                        <li>• Portfolio-worthy projects</li>
+                        <li>• 1:1 mentorship & showcases</li>
+                        <li>• Scholarship consideration</li>
+                    </ul>
+                </div>
+                <div class="benefit-highlight" style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 16px; backdrop-filter: blur(10px);">
+                    <h4 style="color: #FFD633; margin-bottom: 15px;">🧠 What We're Looking For</h4>
+                    <ul style="list-style: none; text-align: left;">
+                        <li>• Problem solvers</li>
+                        <li>• Original thinkers</li>
+                        <li>• Creative communicators</li>
+                        <li>• Young leaders with drive</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-style: italic;">No coaching. No prep needed.</p>
+                </div>
+                <div class="benefit-highlight" style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 16px; backdrop-filter: blur(10px);">
+                    <h4 style="color: #FFD633; margin-bottom: 15px;">🏆 Top Performers Get</h4>
+                    <ul style="list-style: none; text-align: left;">
+                        <li>🥇 Direct admission + scholarship</li>
+                        <li>🎤 Fast-track to National Showcase</li>
+                        <li>📄 Priority mentorship & LORs</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.1); padding: 40px; border-radius: 20px; margin: 40px 0; backdrop-filter: blur(10px);">
+                <h3 style="color: #FFD633; margin-bottom: 20px;">📝 Exam Format (60 mins, online)</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: left;">
+                    <div><strong>Logical Thinking:</strong> Real-world logic challenges</div>
+                    <div><strong>Scenario Task:</strong> Design or problem prompt</div>
+                    <div><strong>Personal Insight:</strong> Share your thought process</div>
+                    <div><strong>Interest Map:</strong> Match you with right lab</div>
+                </div>
+            </div>
+            
+            <a href="#contact" class="btn-primary" style="font-size: 20px; padding: 20px 40px; margin: 20px; display: inline-block;">Register for Talent Discovery Exam</a>
+            <p style="margin-top: 20px; color: #FFD633;">🟨 Limited Seats. Applications close soon for the Founding Cohort</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+                <div style="text-align: center; margin-top: 30px;">
+                    <p><strong>Other ways to reach us:</strong></p>
+                    <p>📧 Email: contact@ignitus.in</p>
+                    <p>💬 WhatsApp: <a href="https://wa.me/your-number" style="color: #2B7BFF;">Chat with us</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🔥 Ignitus</h3>
+                    <p style="color: #FFD633; font-weight: 600; margin-bottom: 20px;">Build. Create. Lead.</p>
+                    <p style="color: #cccccc;">Empowering the next generation of innovators through hands-on learning and real-world projects.</p>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#" title="LinkedIn">in</a>
+                        <a href="#" title="Instagram">ig</a>
+                        <a href="#" title="YouTube">yt</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#labs">Labs</a></li>
+                        <li><a href="#methodology">Methodology</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#apply">Apply Now</a></li>
+                        <li><a href="#admissions">Admissions Abroad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Stay Updated</h3>
+                    <p style="color: #cccccc; margin-bottom: 15px;">Get the latest updates about programs, showcases, and opportunities.</p>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="email" placeholder="Your email" style="flex: 1; padding: 10px; border: none; border-radius: 6px;">
+                        <button class="btn-primary" style="padding: 10px 20px;">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ignitus. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot" onclick="openChat()">
+        <span class="chatbot-icon">💬</span>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // FAQ Toggle functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                toggle.classList.remove('active');
+                toggle.textContent = '+';
+            } else {
+                // Close all other FAQs
+                document.querySelectorAll('.faq-answer.active').forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelectorAll('.faq-toggle.active').forEach(item => {
+                    item.classList.remove('active');
+                    item.textContent = '+';
+                });
+                
+                // Open current FAQ
+                answer.classList.add('active');
+                toggle.classList.add('active');
+                toggle.textContent = '−';
+            }
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Chatbot functionality
+        function openChat() {
+            alert('Hi there! 👋 I\'m your Ignitus Counsellor. \n\nI can help you with:\n• Picking the right lab\n• Program details\n• Scheduling demo classes\n• College counseling queries\n\nHow can I assist you today?');
+        }
+
+        // Lab card interactions
+        document.querySelectorAll('.lab-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.lab-title').textContent;
+                alert(`Interested in ${title}? \n\nThis lab will help you build real-world skills and create portfolio-worthy projects. \n\nContact us to learn more and book a demo session!`);
+            });
+        });
+
+        // Newsletter subscription
+        document.querySelector('input[type="email"]').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                if (this.value) {
+                    alert('Thank you for subscribing! You\'ll receive updates about our programs and opportunities.');
+                    this.value = '';
+                }
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = 'white';
+                navbar.style.backdropFilter = 'none';
+            }
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.step-card, .benefit-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Floating animation for hero cards
+        setInterval(() => {
+            document.querySelectorAll('.floating-card').forEach((card, index) => {
+                const delay = index * 2000;
+                setTimeout(() => {
+                    card.style.transform = `translateY(${Math.sin(Date.now() / 1000 + index) * 10}px)`;
+                }, delay);
+            });
+        }, 100);
+    </script>
+</body>
+</html>
